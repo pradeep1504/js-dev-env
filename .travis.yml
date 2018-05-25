@@ -1,4 +1,4 @@
 language: node_js 
-node_js: -"9"
-install: "npm install"
-script: "npm test"
+node_js: -"v9.10.1"
+before_install:
+    nvm install v9.10.1
