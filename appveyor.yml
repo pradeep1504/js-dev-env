@@ -1,0 +1,13 @@
+#test against this version of nodejs
+environment:
+  matrix:
+  #node.js
+  - nodejs_version: "9"
+#install script. 
+- ps: Install-Product node $env:nodejs_version
+#package
+- npm install
+#test script
+test_script:
+  - node --version
+  - npm --version
