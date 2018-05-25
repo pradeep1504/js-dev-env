@@ -3,7 +3,8 @@ environment:
   matrix:
   #node.js
   - nodejs_version: "9"
-#install script. 
+#install script.
+install: 
 - ps: Install-Product node $env:nodejs_version
 #package
 - npm install
