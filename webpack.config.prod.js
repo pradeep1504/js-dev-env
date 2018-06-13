@@ -1,25 +1,32 @@
 import path from 'path';
-import HtmlWebpackPlugin from 'html-webpack-plugin'; 
+import webpackConfigDev from './webpack.config.dev';
+import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+
 export default {
   debug: true,
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
   noInfo: false,
   entry: [
     path.resolve(__dirname, 'src/index')
   ],
   target: 'web',
   output: {
-    path: path.resolve(__dirname, 'src'),
+    path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
     filename: 'bundle.js'
   },
   plugins: [
-     // new html static file
-     new HtmlWebpackPlugin({
+    // new html static file
+    new HtmlWebpackPlugin({
       template:'src/index.html',
       minify:{},
       inject: true
     }),
+
+    //Eleminate duplicate
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin()
   ],
   module: {
     loaders: [
